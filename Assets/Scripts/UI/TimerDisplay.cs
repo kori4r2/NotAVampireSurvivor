@@ -1,7 +1,7 @@
 using UnityEngine;
 
-namespace NotAVampireSurvivor.Editor {
-    public class Placeholder : MonoBehaviour {
+namespace NotAVampireSurvivor.UI {
+    public class TimerDisplay : MonoBehaviour {
         // Start is called before the first frame update
         void Start() {
 

@@ -1,12 +1,14 @@
 {
-    "name": "NotAVampireSurvivor",
-    "rootNamespace": "NotAVampireSurvivor",
+    "name": "NotAVampireSurvivor.Gameplay",
+    "rootNamespace": "NotAVampireSurvivor.Gameplay",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:f32b1e5c2273b7f47afe6362607ed475"
+        "GUID:68e758aaca6452a3d973fadea5643111",
+        "GUID:f32b1e5c2273b7f47afe6362607ed475",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [
         "Android",
+        "Editor",
         "LinuxStandalone64",
         "macOSStandalone",
         "WebGL",
