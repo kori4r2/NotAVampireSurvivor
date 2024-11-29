@@ -1,0 +1,20 @@
+{
+    "name": "NotAVampireSurvivor.Editor",
+    "rootNamespace": "NotAVampireSurvivor.Editor",
+    "references": [
+        "GUID:f32b1e5c2273b7f47afe6362607ed475",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:3263a08fe4458bd4589d088769ef9a05"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
