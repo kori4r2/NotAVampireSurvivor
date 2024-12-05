@@ -1,15 +1,17 @@
 using UnityEngine;
 
 namespace NotAVampireSurvivor.Core {
-    public class Character : MonoBehaviour {
-        // Start is called before the first frame update
-        void Start() {
-
-        }
-
-        // Update is called once per frame
-        void Update() {
-
-        }
+    [CreateAssetMenu(menuName = "VampSurvivor/Character")]
+    public class Character : ScriptableObject {
+        [SerializeField] private string characterName;
+        public string Name => characterName;
+        [SerializeField] private Weapon defaultWeapon;
+        public Weapon DefaultWeapon => defaultWeapon;
+        [SerializeField] private StatList stats;
+        public StatList Stats => stats;
+        [SerializeField] private RuntimeAnimatorController animatorController;
+        public RuntimeAnimatorController AnimatorController => animatorController;
+        [SerializeField] private Sprite sprite;
+        public Sprite Sprite => sprite;
     }
 }
