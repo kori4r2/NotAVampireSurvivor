@@ -1,7 +1,6 @@
-using NotAVampireSurvivor.Core;
 using UnityEngine;
 
-namespace NotAVampireSurvivor.Gameplay {
+namespace NotAVampireSurvivor.Core {
     [CreateAssetMenu(menuName = "VampSurvivor/Run Settings")]
     public class RunSettings : ScriptableObject {
         [SerializeField] private Stage stage;

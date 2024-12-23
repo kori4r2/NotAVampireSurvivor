@@ -1,0 +1,25 @@
+{
+    "name": "NotAVampireSurvivor.SceneChange",
+    "rootNamespace": "NotAVampireSurvivor.SceneChange",
+    "references": [
+        "GUID:f32b1e5c2273b7f47afe6362607ed475",
+        "GUID:68e758aaca6452a3d973fadea5643111"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor",
+        "LinuxStandalone64",
+        "macOSStandalone",
+        "WebGL",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
