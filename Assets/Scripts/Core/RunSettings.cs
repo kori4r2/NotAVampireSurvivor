@@ -7,5 +7,6 @@ namespace NotAVampireSurvivor.Core {
         public Stage Stage { get => stage; set => stage = value; }
         [SerializeField] private Character character;
         public Character Character { get => character; set => character = value; }
+        public StatList RunStats { get; private set; } = new StatList();
     }
 }

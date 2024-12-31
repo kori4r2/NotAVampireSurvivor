@@ -46,11 +46,27 @@ namespace NotAVampireSurvivor.Core {
         public float BaseHealthRegen => healthRegen;
         public float HealthRegenBoost => ActiveBoosts.ContainsKey(Stat.HealthRegen) ? ActiveBoosts[Stat.HealthRegen] : 0;
         public float HealthRegen => healthRegen * (1.0f + HealthRegenBoost);
-
         private Dictionary<Stat, float> ActiveBoosts = new Dictionary<Stat, float>();
+        private Dictionary<Stat, UnityEvent<Stat>> onStatChange = new Dictionary<Stat, UnityEvent<Stat>>();
         private UnityEvent<StatList> onChange = new UnityEvent<StatList>();
 
+        public StatList() {
+            foreach (Stat stat in Enum.GetValues(typeof(Stat))) {
+                onStatChange[stat] = new UnityEvent<Stat>();
+            }
+        }
+
         public StatList(StatList other) {
+            CopyBaseStats(other);
+            foreach (Stat stat in Enum.GetValues(typeof(Stat))) {
+                onStatChange[stat] = new UnityEvent<Stat>();
+                if (!other.ActiveBoosts.ContainsKey(stat))
+                    continue;
+                ActiveBoosts[stat] = other.ActiveBoosts[stat];
+            }
+        }
+
+        public void CopyBaseStats(StatList other) {
             might = other.might;
             cooldownSpeed = other.cooldownSpeed;
             area = other.area;
@@ -63,17 +79,36 @@ namespace NotAVampireSurvivor.Core {
             healthRegen = other.healthRegen;
         }
 
+        public void CopyActiveBoosts(StatList other) {
+            ActiveBoosts.Clear();
+            foreach (Stat stat in Enum.GetValues(typeof(Stat))) {
+                if (!other.ActiveBoosts.ContainsKey(stat))
+                    continue;
+                ActiveBoosts[stat] = other.ActiveBoosts[stat];
+            }
+        }
+
         public void ObserveChanges(UnityAction<StatList> callback) {
             onChange.AddListener(callback);
         }
 
+        public void ObserveChanges(Stat stat, UnityAction<Stat> callback) {
+            onStatChange[stat]?.AddListener(callback);
+        }
+
         public void RemoveAllObservers() {
             onChange.RemoveAllListeners();
+            foreach (Stat stat in Enum.GetValues(typeof(Stat))) {
+                onStatChange[stat]?.RemoveAllListeners();
+            }
         }
 
         public void ResetBoosts() {
             ActiveBoosts.Clear();
             onChange.Invoke(this);
+            foreach (Stat stat in Enum.GetValues(typeof(Stat))) {
+                onStatChange[stat]?.Invoke(stat);
+            }
         }
 
         public void AddBoost(StatBoost boost) {
@@ -82,6 +117,7 @@ namespace NotAVampireSurvivor.Core {
             else
                 ActiveBoosts[boost.stat] = boost.increase;
             onChange.Invoke(this);
+            onStatChange[boost.stat]?.Invoke(boost.stat);
         }
     }
 }
