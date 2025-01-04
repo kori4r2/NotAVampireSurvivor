@@ -2,7 +2,6 @@ using UnityEngine;
 using Toblerone.Toolbox;
 using NotAVampireSurvivor.Core;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
 
 namespace NotAVampireSurvivor.Gameplay {
     public class Player : MonoBehaviour {
@@ -14,7 +13,7 @@ namespace NotAVampireSurvivor.Gameplay {
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody2D rigid2D;
         [SerializeField] private InputActionReference movementAction;
-        private StatList stats;
+        public StatList Stats { get; private set; } = new StatList();
         private Movable2D movable;
         private WalkAnimator walkAnimator;
         private Vector2 direction;
@@ -32,7 +31,7 @@ namespace NotAVampireSurvivor.Gameplay {
 
         private void ProcessMovementInput(InputAction.CallbackContext context) {
             Vector2 input = context.ReadValue<Vector2>();
-            movable.SetVelocity(input * stats.Speed);
+            movable.SetVelocity(input * Stats.Speed);
             if (input == Vector2.zero)
                 return;
             direction = ApplyAxisRestriction(input);
@@ -74,10 +73,6 @@ namespace NotAVampireSurvivor.Gameplay {
 
         private void FixedUpdate() {
             movable.UpdateMovable();
-        }
-
-        public void ObserveStats(UnityAction<StatList> callback) {
-            stats.ObserveChanges(callback);
         }
     }
 }
