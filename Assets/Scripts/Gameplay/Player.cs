@@ -13,7 +13,6 @@ namespace NotAVampireSurvivor.Gameplay {
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody2D rigid2D;
         [SerializeField] private InputActionReference movementAction;
-        public StatList Stats { get; private set; } = new StatList();
         private Movable2D movable;
         private WalkAnimator walkAnimator;
         private Vector2 direction;
@@ -31,7 +30,7 @@ namespace NotAVampireSurvivor.Gameplay {
 
         private void ProcessMovementInput(InputAction.CallbackContext context) {
             Vector2 input = context.ReadValue<Vector2>();
-            movable.SetVelocity(input * Stats.Speed);
+            // movable.SetVelocity(input * Stats.Speed);
             if (input == Vector2.zero)
                 return;
             direction = ApplyAxisRestriction(input);

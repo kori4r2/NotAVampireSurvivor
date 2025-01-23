@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a2afef72f3a928c0badf755acd9d0b0, type: 3}
+  m_Name: Player Stats
+  m_EditorClassIdentifier: 
+  area: {fileID: 0}
+  armor: {fileID: 0}
+  cooldownSpeed: {fileID: 0}
+  duration: {fileID: 0}
+  healthRegen: {fileID: 0}
+  maxHealth: {fileID: 0}
+  might: {fileID: 0}
+  projectileCount: {fileID: 0}
+  projectileSpeed: {fileID: 0}
+  speed: {fileID: 0}
