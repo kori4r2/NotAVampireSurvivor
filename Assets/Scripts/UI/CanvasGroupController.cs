@@ -1,42 +1,44 @@
-using Toblerone.Toolbox;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace NotAVampireSurvivor.UI {
-    public class CanvasGroup : MonoBehaviour {
+    public class CanvasGroupController : MonoBehaviour {
         [SerializeField] protected Selectable firstItem;
         [SerializeField] protected bool resetOnActivation;
         [SerializeField] protected CanvasGroup canvasGroup;
+        [SerializeField] protected CanvasGroupReference reference;
         [SerializeField] protected InputMapSwitcher inputSwitcher;
-        [SerializeField] protected EventSO activationEvent;
-        [SerializeField] protected EventSO deactivationEvent;
-        protected EventListener activationListener;
-        protected EventListener deactivationListener;
         protected Selectable currentSelection;
 
         protected void Awake() {
-            activationListener = new EventListener(activationEvent, Activate);
-            activationListener.StartListeningEvent();
-            deactivationListener = new EventListener(deactivationEvent, Deactivate);
-            deactivationListener.StartListeningEvent();
             currentSelection = firstItem;
+            reference.Value = this;
+            Deactivate();
         }
 
         protected void OnDestroy() {
-            activationListener.StopListeningEvent();
-            deactivationListener.StopListeningEvent();
+            if (reference.Value == this)
+                reference.Value = null;
         }
 
-        public void Activate() {
+        public void Activate() { Activate(false); }
+        public void Activate(bool forceReset) {
             inputSwitcher.SwitchToMap();
+            canvasGroup.gameObject.SetActive(true);
+            canvasGroup.interactable = true;
             SelectableItem.SelectionChanged.AddListener(UpdateSelection);
-            if (resetOnActivation)
+            if (forceReset || resetOnActivation)
                 firstItem.Select();
             else
                 currentSelection.Select();
         }
 
-        public void Deactivate() {
+        public void Deactivate() { Deactivate(true); }
+        public void Deactivate(bool hideGroup) {
+            if (hideGroup)
+                canvasGroup.gameObject.SetActive(false);
+            else
+                canvasGroup.interactable = false;
             SelectableItem.SelectionChanged.RemoveListener(UpdateSelection);
         }
 

@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Navigate",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "0ecd2b73-44c5-4cd1-8e37-86057483f060",
                     "expectedControlType": "Vector2",
                     "processors": "NormalizeVector2",
@@ -495,7 +495,7 @@
             "actions": [
                 {
                     "name": "Navigate",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "6125b90a-0fe7-41bd-9eb6-ad6491516dca",
                     "expectedControlType": "Vector2",
                     "processors": "NormalizeVector2",
