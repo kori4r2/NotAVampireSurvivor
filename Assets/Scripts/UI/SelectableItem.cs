@@ -9,13 +9,17 @@ namespace NotAVampireSurvivor.UI {
         public static Selectable currentSelection;
         public static readonly UnityEvent<Selectable> SelectionChanged = new UnityEvent<Selectable>();
         protected Selectable selectable;
+        [SerializeField] protected UnityEvent serializedOnSelect = new UnityEvent();
 
-        protected void Awake() {
+        protected virtual void Awake() {
             selectable = GetComponent<Selectable>();
         }
 
-        public void OnSelect(BaseEventData eventData) {
+        public virtual void OnSelect(BaseEventData eventData) {
+            if (currentSelection != this)
+                SelectionChanged.Invoke(selectable);
             currentSelection = selectable;
+            serializedOnSelect?.Invoke();
         }
 
         public void OnPointerEnter(PointerEventData eventData) {

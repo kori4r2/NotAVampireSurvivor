@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2afef72f3a928c0badf755acd9d0b0, type: 3}
   m_Name: Player Stats
   m_EditorClassIdentifier: 
-  area: {fileID: 0}
-  armor: {fileID: 0}
-  cooldownSpeed: {fileID: 0}
-  duration: {fileID: 0}
-  healthRegen: {fileID: 0}
-  maxHealth: {fileID: 0}
-  might: {fileID: 0}
-  projectileCount: {fileID: 0}
-  projectileSpeed: {fileID: 0}
-  speed: {fileID: 0}
+  area: {fileID: 11400000, guid: d78002ac0bf24dd7297cc364a34c4a87, type: 2}
+  armor: {fileID: 11400000, guid: c35caccce30ef5c45aea1e5910142d7d, type: 2}
+  cooldownSpeed: {fileID: 11400000, guid: de8b6bb5385075576b2c51c0663052b6, type: 2}
+  duration: {fileID: 11400000, guid: 00bc326233c171054bf0c71d79ca898e, type: 2}
+  healthRegen: {fileID: 11400000, guid: 35ed7a3524b487a28af3569bdd7fd3f2, type: 2}
+  maxHealth: {fileID: 11400000, guid: 74199cc399d5422de99737b791f68f51, type: 2}
+  might: {fileID: 11400000, guid: e981895317f70298bb4fe721ac7850ab, type: 2}
+  projectileCount: {fileID: 11400000, guid: f0b7a6b9ae4950cf5a2b7b6e98231415, type: 2}
+  projectileSpeed: {fileID: 11400000, guid: 37083d17a99328348b99ecac6f1a418b, type: 2}
+  speed: {fileID: 11400000, guid: c8e6f022a4b608490bb4256863214f7a, type: 2}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4126e4ca4980d1243a0d297572c68f48, type: 3}
+  m_Name: Character1
+  m_EditorClassIdentifier: 
+  characterName: Old Man
+  defaultWeapon: {fileID: 0}
+  animatorController: {fileID: 0}
+  sprite: {fileID: 5315441089790361111, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+  description: Inreased Area, but slower Move Speed.
+  permanentBoosts:
+  - stat: {fileID: 11400000, guid: d78002ac0bf24dd7297cc364a34c4a87, type: 2}
+    increase: 0.3
+  - stat: {fileID: 11400000, guid: c8e6f022a4b608490bb4256863214f7a, type: 2}
+    increase: -0.15
+  growthPeriod: 0
+  growthLimit: 0
+  growthBoost: []

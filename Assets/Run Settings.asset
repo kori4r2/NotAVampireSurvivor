@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stage: {fileID: 0}
   character: {fileID: 0}
+  playerStats: {fileID: 11400000, guid: 15e5bad4a7cddad0982eec02e50b20be, type: 2}

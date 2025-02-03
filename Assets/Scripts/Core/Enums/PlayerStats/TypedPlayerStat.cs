@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,10 +25,11 @@ namespace NotAVampireSurvivor.Core {
             onStatChange.RemoveAllListeners();
         }
 
-        public abstract void IncreaseBaseValue(T increase);
+        protected abstract void IncreaseBaseValue(T increase);
 
-        public void AddBaseValue(T increase) {
-            IncreaseBaseValue(increase);
+        public override void ApplyBaseStat(float increase) {
+            T value = (T)Convert.ChangeType(increase, typeof(T));
+            IncreaseBaseValue(value);
             onStatChange.Invoke(Value);
         }
 
@@ -35,15 +37,16 @@ namespace NotAVampireSurvivor.Core {
             baseValue = DefaultValue;
         }
 
-        public override void ResetBoost() {
-            activeBoost = default;
+        protected abstract void IncreaseBoost(T increase);
+
+        public override void ApplyBoost(float increase) {
+            T value = (T)Convert.ChangeType(increase, typeof(T));
+            IncreaseBoost(value);
             onStatChange.Invoke(Value);
         }
 
-        public abstract void IncreaseBoost(T increase);
-
-        public void AddBoost(T increase) {
-            IncreaseBoost(increase);
+        public override void ResetBoost() {
+            activeBoost = default;
             onStatChange.Invoke(Value);
         }
     }

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab68f1d535568198a4b5f96e6121ab3, type: 3}
   m_Name: Duration
   m_EditorClassIdentifier: 
+  displayPrefix: 'x '
+  displaySuffix: 
+  valueDescription: on Multiplier
   sprite: {fileID: 0}
-  baseValue: 0
+  baseValue: 1

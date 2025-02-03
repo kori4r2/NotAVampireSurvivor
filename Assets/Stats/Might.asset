@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37d88b31791ef0f6b69520eeabd7aa5, type: 3}
   m_Name: Might
   m_EditorClassIdentifier: 
+  displayPrefix: 'x '
+  displaySuffix: 
+  valueDescription: on Multiplier
   sprite: {fileID: 0}
-  baseValue: 0
+  baseValue: 1

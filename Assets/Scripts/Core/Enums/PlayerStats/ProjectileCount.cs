@@ -6,14 +6,14 @@ namespace NotAVampireSurvivor.Core {
     public class ProjectileCount : TypedPlayerStat<int> {
         public override int ActiveBoost => Math.Max(0, activeBoost);
 
-        public override int Value => baseValue + ActiveBoost;
+        public override int Value => Math.Max(0, baseValue + ActiveBoost);
 
         protected override int DefaultValue => 0;
 
-        public override void IncreaseBaseValue(int increase) {
+        protected override void IncreaseBaseValue(int increase) {
             baseValue += increase;
         }
 
-        public override void IncreaseBoost(int increase) { activeBoost += increase; }
+        protected override void IncreaseBoost(int increase) { activeBoost += increase; }
     }
 }

@@ -9,10 +9,10 @@ namespace NotAVampireSurvivor.Core {
 
         protected override float DefaultValue => 1.0f;
 
-        public override void IncreaseBaseValue(float increase) {
+        protected override void IncreaseBaseValue(float increase) {
             baseValue += increase;
         }
 
-        public override void IncreaseBoost(float increase) { activeBoost += increase; }
+        protected override void IncreaseBoost(float increase) { activeBoost += increase; }
     }
 }

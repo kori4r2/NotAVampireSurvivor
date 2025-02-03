@@ -26,26 +26,26 @@ namespace NotAVampireSurvivor.Core {
         }
 
         public void ApplyUpgrade(WeaponUpgrade upgrade) {
-            switch (upgrade.stat) {
-                case WeaponStat.Damage:
-                    Damage += Mathf.FloorToInt(upgrade.increase);
-                    break;
-                case WeaponStat.Cooldown:
-                    Cooldown += upgrade.increase;
-                    break;
-                case WeaponStat.Duration:
-                    Duration += upgrade.increase;
-                    break;
-                case WeaponStat.ProjectileCount:
-                    ProjectileCount += Mathf.FloorToInt(upgrade.increase);
-                    break;
-                case WeaponStat.ProjectileSpeed:
-                    ProjectileSpeed += upgrade.increase;
-                    break;
-                default:
-                    Debug.LogError($"[WeaponStats]: Invalid WeaponStat value: {upgrade.stat}");
-                    return;
-            }
+            // switch (upgrade.stat) {
+            //     case WeaponStat.Damage:
+            //         Damage += Mathf.FloorToInt(upgrade.increase);
+            //         break;
+            //     case WeaponStat.Cooldown:
+            //         Cooldown += upgrade.increase;
+            //         break;
+            //     case WeaponStat.Duration:
+            //         Duration += upgrade.increase;
+            //         break;
+            //     case WeaponStat.ProjectileCount:
+            //         ProjectileCount += Mathf.FloorToInt(upgrade.increase);
+            //         break;
+            //     case WeaponStat.ProjectileSpeed:
+            //         ProjectileSpeed += upgrade.increase;
+            //         break;
+            //     default:
+            //         Debug.LogError($"[WeaponStats]: Invalid WeaponStat value: {upgrade.stat}");
+            //         return;
+            // }
             onChange.Invoke(this);
         }
 

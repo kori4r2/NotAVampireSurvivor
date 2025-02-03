@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455d5d4bd9581a8cf85b82c4e560ddf1, type: 3}
   m_Name: Area
   m_EditorClassIdentifier: 
+  displayPrefix: 'x '
+  displaySuffix: 
+  valueDescription: on Multiplier
   sprite: {fileID: 0}
-  baseValue: 0
+  baseValue: 1
