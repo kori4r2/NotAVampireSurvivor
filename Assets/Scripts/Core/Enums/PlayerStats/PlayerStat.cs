@@ -14,6 +14,7 @@ namespace NotAVampireSurvivor.Core {
         public abstract void RemoveAllObservers();
 
         public abstract void ApplyBaseStat(float increase);
+
         public abstract void ResetBaseValue();
 
         public abstract void ApplyBoost(float increase);

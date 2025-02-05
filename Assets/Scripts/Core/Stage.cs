@@ -5,6 +5,8 @@ namespace NotAVampireSurvivor.Core {
     public class Stage : ScriptableObject {
         [SerializeField] private string levelName;
         public string LevelName => levelName;
+        [SerializeField, TextArea] private string levelDescription;
+        public string Description => levelDescription;
         [SerializeField] private Sprite preview;
         public Sprite Preview => preview;
         [SerializeField] private Wave[] waves;

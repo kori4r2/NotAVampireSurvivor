@@ -8,12 +8,20 @@ namespace NotAVampireSurvivor.UI {
         [SerializeField] protected CanvasGroup canvasGroup;
         [SerializeField] protected CanvasGroupReference reference;
         [SerializeField] protected InputMapSwitcher inputSwitcher;
+        [SerializeField] protected CanvasGroupController[] childrenControllers;
         protected Selectable currentSelection;
+        private bool initialized = false;
 
-        protected void Awake() {
+        public void Awake() {
+            if (initialized)
+                return;
             currentSelection = firstItem;
             reference.Value = this;
+            foreach (CanvasGroupController child in childrenControllers) {
+                child.Awake();
+            }
             Deactivate();
+            initialized = true;
         }
 
         protected void OnDestroy() {

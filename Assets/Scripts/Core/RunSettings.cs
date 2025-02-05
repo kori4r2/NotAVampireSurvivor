@@ -25,6 +25,8 @@ namespace NotAVampireSurvivor.Core {
 
         public void ClearCharacterSelection() { Character = null; }
 
+        public void ClearStageSelection() { Stage = null; }
+
         public void ObserveCharacterSelection(UnityAction<Character> callback) {
             characterChanged.AddListener(callback);
         }
