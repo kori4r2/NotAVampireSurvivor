@@ -50,6 +50,6 @@ namespace NotAVampireSurvivor.SceneChange {
             transitionOutStarted.Raise();
         }
 
-        public override void ManageSceneLoadOperation(AsyncOperation loadOperation) { }
+        public override void DisplaySceneLoadOperation(AsyncOperation loadOperation) { }
     }
 }

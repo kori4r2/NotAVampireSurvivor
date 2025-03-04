@@ -6,6 +6,7 @@ using Toblerone.Toolbox.EditorScripts;
 namespace NotAVampireSurvivor.Editor {
     [CustomPropertyDrawer(typeof(AnimationInfo))]
     public class AnimationInfoDrawer : PropertyDrawer {
+        private RectManipulator rectManipulator = new RectManipulator();
         private SerializedProperty duration;
         private SerializedProperty sprites;
         private bool draggingOver = false;
@@ -58,15 +59,17 @@ namespace NotAVampireSurvivor.Editor {
         }
 
         private void CalculateFieldRects(Rect propertyRect) {
-            Vector2 durationPosition = new Vector2(propertyRect.position.x + marginSize, propertyRect.position.y + EditorGUIUtility.singleLineHeight);
-            Vector2 durationSize = new Vector2(propertyRect.size.x - 2 * marginSize, EditorGUIUtility.singleLineHeight);
-            durationRect = new Rect(durationPosition, durationSize);
-            Vector2 spritePosition = durationPosition + new Vector2(0f, durationSize.y + marginSize / 2f);
-            Vector2 spriteSize = new Vector2(durationRect.size.x, TEXTURE_SIZE);
-            spriteRect = new Rect(spritePosition, spriteSize);
-            Vector2 animationPosition = spritePosition + new Vector2(0f, spriteSize.y + marginSize / 2f);
-            Vector2 animationSize = new Vector2(durationRect.size.x, 2 * EditorGUIUtility.singleLineHeight);
-            animationRect = new Rect(animationPosition, animationSize);
+            rectManipulator.ResetToRect(propertyRect);
+            rectManipulator.OffsetVerticalPosition(EditorGUIUtility.singleLineHeight);
+            rectManipulator.SetHorizontalMargins(marginSize, marginSize);
+            rectManipulator.SetSize(null, EditorGUIUtility.singleLineHeight);
+            durationRect = rectManipulator.GetRect();
+            rectManipulator.SetSize(null, TEXTURE_SIZE);
+            rectManipulator.OffsetVerticalPosition(durationRect.size.y + (marginSize / 2f));
+            spriteRect = rectManipulator.GetRect();
+            rectManipulator.OffsetVerticalPosition(spriteRect.size.y + (marginSize / 2f));
+            rectManipulator.SetSize(null, 2 * EditorGUIUtility.singleLineHeight);
+            animationRect = rectManipulator.GetRect();
         }
 
         private void DrawObjectPicker() {
@@ -114,12 +117,11 @@ namespace NotAVampireSurvivor.Editor {
         }
 
         private void DrawAnimationSlider() {
-            Vector2 timerSize = new Vector2(animationRect.size.x, EditorGUIUtility.singleLineHeight);
-            Vector2 timerPosition = new Vector2(animationRect.position.x, animationRect.position.y);
-            Rect timerRect = new Rect(timerPosition, timerSize);
-            Vector2 sliderSize = new Vector2(timerSize.x, timerSize.y);
-            Vector2 sliderPosition = new Vector2(timerPosition.x, timerPosition.y + EditorGUIUtility.singleLineHeight);
-            Rect sliderRect = new Rect(sliderPosition, sliderSize);
+            rectManipulator.ResetToRect(animationRect);
+            rectManipulator.SetSize(null, EditorGUIUtility.singleLineHeight);
+            Rect timerRect = rectManipulator.GetRect();
+            rectManipulator.OffsetVerticalPosition(EditorGUIUtility.singleLineHeight);
+            Rect sliderRect = rectManipulator.GetRect();
             sliderValue = EditorGUI.Slider(sliderRect, sliderValue, 0f, 1f);
             if (sliderValue == 1)
                 currentIndex = sprites.arraySize - 1;
@@ -131,12 +133,13 @@ namespace NotAVampireSurvivor.Editor {
         }
 
         private void DrawAnimationSprite() {
-            Vector2 textureSize = new Vector2(TEXTURE_SIZE, TEXTURE_SIZE);
-            float xOffset = (spriteRect.width / 2f) - textureSize.x / 2f;
-            Vector2 texturePosition = new Vector2(spriteRect.position.x + xOffset, spriteRect.y);
-            Rect textureRect = EditorUtils.CropRect(new Rect(texturePosition, textureSize), spriteRect);
+            rectManipulator.ResetToRect(spriteRect);
+            rectManipulator.SetSize(TEXTURE_SIZE, TEXTURE_SIZE);
+            rectManipulator.OffsetHorizontalPosition((spriteRect.width / 2f) - (TEXTURE_SIZE / 2f));
+            Rect textureRect = EditorUtils.CropRect(rectManipulator.GetRect(), spriteRect);
             Sprite animationSprite = sprites.GetArrayElementAtIndex(currentIndex).objectReferenceValue as Sprite;
-            EditorGUI.DrawTextureTransparent(textureRect, EditorUtils.GetCroppedTexture(animationSprite), ScaleMode.ScaleAndCrop);
+            float aspect = animationSprite.textureRect.width / animationSprite.textureRect.height;
+            EditorGUI.DrawTextureTransparent(textureRect, AssetPreview.GetAssetPreview(animationSprite), ScaleMode.ScaleToFit, aspect);
         }
     }
 }

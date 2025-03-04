@@ -11,8 +11,9 @@ namespace NotAVampireSurvivor.Core {
             if (sprites == null || sprites.Length < 1)
                 return null;
             if (time < 0)
-                time += (1 + Mathf.CeilToInt(-time / duration)) * duration;
-            return sprites[Mathf.FloorToInt(Mathf.Repeat(time, duration))];
+                time += Mathf.CeilToInt(-time / duration) * duration;
+            time = Mathf.Repeat(time, duration) / duration;
+            return sprites[Mathf.Min(Mathf.FloorToInt(time * sprites.Length), sprites.Length - 1)];
         }
     }
 }
