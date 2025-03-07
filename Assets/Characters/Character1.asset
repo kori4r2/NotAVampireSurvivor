@@ -14,8 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Old Man
   defaultWeapon: {fileID: 0}
-  animatorController: {fileID: 0}
   sprite: {fileID: 5315441089790361111, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+  idleAnimation:
+    duration: 1
+    sprites:
+    - {fileID: -4450928552790710908, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+  walkAnimation:
+    duration: 1.5
+    sprites:
+    - {fileID: 7603815581736929346, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: -9181068681380193329, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 2039046483625489047, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: -392306627247160344, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 5315441089790361111, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: -5326189913879444921, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: -4450928552790710908, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 1210402043203294513, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 3613103271680409721, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 4308306853517967225, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 9060004952750057539, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
+    - {fileID: 1050490855487444679, guid: b61faee5dbb30de65a7d79ab2abe7c0c, type: 3}
   description: Inreased Area, but slower Move Speed.
   permanentBoosts:
   - stat: {fileID: 11400000, guid: d78002ac0bf24dd7297cc364a34c4a87, type: 2}

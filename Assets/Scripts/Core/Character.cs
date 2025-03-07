@@ -8,9 +8,11 @@ namespace NotAVampireSurvivor.Core {
         public string Name => characterName;
         [SerializeField] private Weapon defaultWeapon;
         public Weapon DefaultWeapon => defaultWeapon;
-        [SerializeField] private RuntimeAnimatorController animatorController;
-        public RuntimeAnimatorController AnimatorController => animatorController;
         [SerializeField] private Sprite sprite;
+        [SerializeField] private AnimationInfo idleAnimation;
+        public AnimationInfo IdleAnimation => idleAnimation;
+        [SerializeField] private AnimationInfo walkAnimation;
+        public AnimationInfo WalkAnimation => walkAnimation;
         public Sprite Sprite => sprite;
         [SerializeField, TextArea] private string description;
         public string Description => description;

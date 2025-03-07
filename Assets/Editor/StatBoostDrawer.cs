@@ -1,3 +1,4 @@
+using Toblerone.Toolbox.EditorScripts;
 using NotAVampireSurvivor.Core;
 using UnityEditor;
 using UnityEngine;
@@ -5,15 +6,17 @@ using UnityEngine;
 namespace NotAVampireSurvivor.Editor {
     [CustomPropertyDrawer(typeof(StatBoost))]
     public class StatBoostDrawer : PropertyDrawer {
+        private RectManipulator rectManipulator = new RectManipulator();
         private SerializedProperty stat;
         private SerializedProperty increase;
-        private const float indentSise = 10f;
+        private const float indentSize = 10f;
+        private const float paddingSize = 2f;
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label) {
             if (!property.isExpanded)
                 return EditorGUIUtility.singleLineHeight;
             bool hasReference = property.FindPropertyRelative("stat")?.objectReferenceValue != null;
-            return EditorGUIUtility.singleLineHeight * (hasReference ? 3 : 2);
+            return EditorGUIUtility.singleLineHeight * (hasReference ? 3 : 2) + paddingSize * (hasReference ? 2 : 1);
         }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -27,12 +30,14 @@ namespace NotAVampireSurvivor.Editor {
         }
 
         private void DrawPropertyFields(Rect position, SerializedProperty property) {
-            position.position += new Vector2(indentSise, EditorGUIUtility.singleLineHeight);
+            rectManipulator.ResetToRect(position);
+            rectManipulator.OffsetVerticalPosition(EditorGUIUtility.singleLineHeight);
+            rectManipulator.SetHorizontalMargins(indentSize, 0);
+            rectManipulator.SetSize(null, EditorGUIUtility.singleLineHeight);
             FindSerializedFieldProperties(property);
-            position.size = new Vector2(position.size.x - indentSise, EditorGUIUtility.singleLineHeight);
-            EditorGUI.ObjectField(position, stat);
+            EditorGUI.ObjectField(rectManipulator.GetRect(), stat);
             if (stat.objectReferenceValue != null) {
-                DrawIncreaseField(position);
+                DrawIncreaseField();
             }
         }
 
@@ -41,8 +46,9 @@ namespace NotAVampireSurvivor.Editor {
             increase = property.FindPropertyRelative("increase");
         }
 
-        private void DrawIncreaseField(Rect position) {
-            position.position += new Vector2(0, EditorGUIUtility.singleLineHeight);
+        private void DrawIncreaseField() {
+            rectManipulator.OffsetVerticalPosition(EditorGUIUtility.singleLineHeight + paddingSize);
+            Rect position = rectManipulator.GetRect();
             PlayerStat playerStat = stat.objectReferenceValue as PlayerStat;
             string unitIndicator = string.IsNullOrEmpty(playerStat.ValueDescription) ? "" : $" ({playerStat.ValueDescription})";
             string label = $"{increase.displayName}{unitIndicator}";

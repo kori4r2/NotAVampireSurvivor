@@ -10,6 +10,8 @@ namespace NotAVampireSurvivor.Core {
         public Sprite GetSprite(float time) {
             if (sprites == null || sprites.Length < 1)
                 return null;
+            if (sprites.Length == 1)
+                return sprites[0];
             if (time < 0)
                 time += Mathf.CeilToInt(-time / duration) * duration;
             time = Mathf.Repeat(time, duration) / duration;

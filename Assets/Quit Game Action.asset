@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58a387928dfae96cb81b35509fe66c96, type: 3}
-  m_Name: Quit Game
+  m_Script: {fileID: 11500000, guid: 8e3d102342ce760f799d7c2d7f6d8d81, type: 3}
+  m_Name: Quit Game Action
   m_EditorClassIdentifier: 

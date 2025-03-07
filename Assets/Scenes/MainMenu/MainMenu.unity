@@ -5177,7 +5177,7 @@ PrefabInstance:
     - target: {fileID: 6068920784433641064, guid: df98884404aedfe288bb4e0535242252, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 0d6de2680645445a992e1171b9509385, type: 2}
+      objectReference: {fileID: 11400000, guid: 992ce05d02387db37a58a9237c45d814, type: 2}
     - target: {fileID: 6068920784433641064, guid: df98884404aedfe288bb4e0535242252, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -5188,7 +5188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6068920784433641064, guid: df98884404aedfe288bb4e0535242252, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: NotAVampireSurvivor.Core.QuitGameAction, NotAVampireSurvivor.Core
+      value: Toblerone.Toolbox.QuitGameAction, TobleroneBox
       objectReference: {fileID: 0}
     - target: {fileID: 6068920784433641064, guid: df98884404aedfe288bb4e0535242252, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

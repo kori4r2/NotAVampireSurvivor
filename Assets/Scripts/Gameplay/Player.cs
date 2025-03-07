@@ -2,6 +2,7 @@ using UnityEngine;
 using Toblerone.Toolbox;
 using NotAVampireSurvivor.Core;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 namespace NotAVampireSurvivor.Gameplay {
     public class Player : MonoBehaviour {
@@ -10,31 +11,36 @@ namespace NotAVampireSurvivor.Gameplay {
         [SerializeField] private BoolVariable isGamePaused;
         private VariableObserver<bool> pauseObserver;
         [SerializeField] private PlayerReference reference;
-        [SerializeField] private Animator animator;
-        [SerializeField] private Rigidbody2D rigid2D;
+        [SerializeField] private Speed speed;
+        [SerializeField] private WalkAnimator walkAnimator;
         [SerializeField] private InputActionReference movementAction;
-        private Movable2D movable;
-        private WalkAnimator walkAnimator;
+        [SerializeField] private Movable2D movable;
+        [Header("Debug")]
+        [SerializeField] private UnityEvent onAwake;
         private Vector2 direction;
         private static readonly float COS_45 = Mathf.Cos(Mathf.PI / 4);
         private static readonly float COS_22_5 = Mathf.Cos(Mathf.PI / 8);
 
         private void Awake() {
-            movable = new Movable2D(rigid2D);
+            reference.Value = this;
             movable.AllowDynamicMovement();
             movementAction.action.performed += ProcessMovementInput;
-            walkAnimator = new WalkAnimator(animator);
+            onAwake?.Invoke();
             pauseObserver = new VariableObserver<bool>(isGamePaused, OnPauseChange);
             pauseObserver.StartWatching();
+            LoadCharacter(runSettings.Character);
+        }
+
+        private void LoadCharacter(Character character) {
+            walkAnimator.Init(character.IdleAnimation, character.WalkAnimation);
         }
 
         private void ProcessMovementInput(InputAction.CallbackContext context) {
             Vector2 input = context.ReadValue<Vector2>();
-            // movable.SetVelocity(input * Stats.Speed);
+            movable.SetVelocity(input * speed.Value);
             if (input == Vector2.zero)
                 return;
             direction = ApplyAxisRestriction(input);
-            walkAnimator.UpdateDirection(direction);
         }
 
         private Vector2 ApplyAxisRestriction(Vector2 input) {
@@ -61,13 +67,16 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void OnDestroy() {
+            if (reference.Value == this)
+                reference.Value = null;
             pauseObserver.StopWatching();
         }
 
         private void Update() {
             if (isGamePaused.Value)
                 return;
-            walkAnimator.SetSpeed(rigid2D.velocity.magnitude);
+            walkAnimator.SetVelocity(movable.CurrentVelocity);
+            walkAnimator.Update(Time.deltaTime);
         }
 
         private void FixedUpdate() {

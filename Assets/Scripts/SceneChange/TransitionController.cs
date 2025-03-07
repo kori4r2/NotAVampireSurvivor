@@ -35,8 +35,8 @@ namespace NotAVampireSurvivor.SceneChange {
         }
 
         private void OnDestroy() {
-            inFinishedListener.StopListeningEvent();
-            outFinishedListener.StopListeningEvent();
+            inPreparedListener.StopListeningEvent();
+            outPreparedListener.StopListeningEvent();
         }
 
         public override void Activate(UnityAction onPrepared) {
