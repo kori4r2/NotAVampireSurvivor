@@ -5,7 +5,7 @@ namespace NotAVampireSurvivor.Core {
     public class Wave {
         [SerializeField] private EnemyGroup[] enemyGroups;
         public EnemyGroup[] EnemyGroups => enemyGroups;
-        [SerializeField] private float spawnTime;
+        [SerializeField, TimeFloat] private float spawnTime;
         public float SpawnTime => spawnTime;
     }
 }
