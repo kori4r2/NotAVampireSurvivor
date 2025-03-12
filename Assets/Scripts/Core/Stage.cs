@@ -10,6 +10,6 @@ namespace NotAVampireSurvivor.Core {
         [SerializeField] private Sprite preview;
         public Sprite Preview => preview;
         [SerializeField] private Wave[] waves;
-        public Wave[] Wave => waves;
+        public Wave[] Waves => waves;
     }
 }
