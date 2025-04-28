@@ -25,13 +25,25 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         public bool IsInsideLimits(Vector3 position) {
+            if (position.y < cameraPosition.y - viewRect.yMin)
+                return false;
+            if (position.y > cameraPosition.y + viewRect.yMax)
+                return false;
             if (position.x < cameraPosition.x - viewRect.xMin)
                 return false;
             if (position.x > cameraPosition.x + viewRect.xMax)
                 return false;
-            if (position.y < cameraPosition.y - viewRect.yMin)
+            return true;
+        }
+
+        public bool IsInsideMargins(Vector3 position) {
+            if (position.y < cameraPosition.y - viewRect.yMin - marginSize)
                 return false;
-            if (position.y > cameraPosition.y + viewRect.yMax)
+            if (position.y > cameraPosition.y + viewRect.yMax + marginSize)
+                return false;
+            if (position.x < cameraPosition.x - viewRect.xMin - marginSize)
+                return false;
+            if (position.x > cameraPosition.x + viewRect.xMax + marginSize)
                 return false;
             return true;
         }
