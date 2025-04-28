@@ -7,7 +7,5 @@ namespace NotAVampireSurvivor.Core {
         public Sprite Sprite => sprite;
         [SerializeField] private AnimationInfo animation;
         public AnimationInfo Animation;
-        [SerializeField] private EnemyAttack attack;
-        public EnemyAttack Attack => attack;
     }
 }
