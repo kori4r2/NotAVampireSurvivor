@@ -25,6 +25,7 @@ namespace NotAVampireSurvivor.Gameplay {
             reference.Value = this;
             movable.AllowDynamicMovement();
             movementAction.action.performed += ProcessMovementInput;
+            movementAction.action.canceled += ProcessMovementInput;
             onAwake?.Invoke();
             pauseObserver = new VariableObserver<bool>(isGamePaused, OnPauseChange);
             pauseObserver.StartWatching();
@@ -70,6 +71,8 @@ namespace NotAVampireSurvivor.Gameplay {
             if (reference.Value == this)
                 reference.Value = null;
             pauseObserver.StopWatching();
+            movementAction.action.performed -= ProcessMovementInput;
+            movementAction.action.canceled -= ProcessMovementInput;
         }
 
         private void Update() {
