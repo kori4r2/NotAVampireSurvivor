@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccef00627106d8e328cbadc061e47ffd, type: 3}
-  m_Name: StageA
+  m_Name: StageB
   m_EditorClassIdentifier: 
-  levelName: Stage A
-  levelDescription: First stage.
+  levelName: Stage B
+  levelDescription: Second stage.
   preview: {fileID: 0}
   waves: []
+  stagePrefab: {fileID: 6876319930047904405, guid: 973177ca2c82f98adacb5e7916f4ef0e, type: 3}

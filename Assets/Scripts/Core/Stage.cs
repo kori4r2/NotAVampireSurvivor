@@ -11,5 +11,7 @@ namespace NotAVampireSurvivor.Core {
         public Sprite Preview => preview;
         [SerializeField] private Wave[] waves;
         public Wave[] Waves => waves;
+        [SerializeField] private GameObject stagePrefab;
+        public GameObject Prefab => stagePrefab;
     }
 }
