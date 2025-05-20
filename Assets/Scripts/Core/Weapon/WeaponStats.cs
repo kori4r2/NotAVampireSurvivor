@@ -4,53 +4,58 @@ using UnityEngine.Events;
 namespace NotAVampireSurvivor.Core {
     [System.Serializable]
     public class WeaponStats {
-        [SerializeField, Range(1, 200)] private int baseDamage;
-        public int Damage { get; private set; }
-        [SerializeField, Range(0.1f, 30f)] private float cooldown;
-        public float Cooldown { get; private set; }
-        [SerializeField, Range(0f, 30f)] private float duration;
-        public float Duration { get; private set; }
-        [SerializeField, Range(0, 10)] private int projectileCount;
-        public int ProjectileCount { get; private set; }
-        [SerializeField, Range(0f, 50f)] private float projectileSpeed;
-        public float ProjectileSpeed { get; private set; }
+        [SerializeField/*, Range(1, 200)*/] private BaseDamage baseDamage;
+        public int Damage => baseDamage.Value;
+        [SerializeField/*, Range(0.1f, 30f)*/] private BaseCooldown cooldown;
+        public float Cooldown => cooldown.Value;
+        [SerializeField/*, Range(0f, 30f)*/] private BaseDuration duration;
+        public float Duration => duration.Value;
+        [SerializeField/*, Range(0f, 30f)*/] private BaseArea area;
+        public float Area => area.Value;
+        [SerializeField/*, Range(0, 10)*/] private BaseAmount projectileCount;
+        public int ProjectileCount => projectileCount.Value;
         private UnityEvent<WeaponStats> onChange = new UnityEvent<WeaponStats>();
 
         public void ResetStats() {
-            Damage = baseDamage;
-            Cooldown = cooldown;
-            Duration = duration;
-            ProjectileCount = projectileCount;
-            ProjectileSpeed = projectileSpeed;
+            baseDamage.ResetValue();
+            cooldown.ResetValue();
+            area.ResetValue();
+            duration.ResetValue();
+            projectileCount.ResetValue();
             onChange.Invoke(this);
         }
 
-        public void ApplyUpgrade(WeaponUpgrade upgrade) {
-            // switch (upgrade.stat) {
-            //     case WeaponStat.Damage:
-            //         Damage += Mathf.FloorToInt(upgrade.increase);
-            //         break;
-            //     case WeaponStat.Cooldown:
-            //         Cooldown += upgrade.increase;
-            //         break;
-            //     case WeaponStat.Duration:
-            //         Duration += upgrade.increase;
-            //         break;
-            //     case WeaponStat.ProjectileCount:
-            //         ProjectileCount += Mathf.FloorToInt(upgrade.increase);
-            //         break;
-            //     case WeaponStat.ProjectileSpeed:
-            //         ProjectileSpeed += upgrade.increase;
-            //         break;
-            //     default:
-            //         Debug.LogError($"[WeaponStats]: Invalid WeaponStat value: {upgrade.stat}");
-            //         return;
-            // }
+        public void UpgradeDamage(int increase) {
+            baseDamage.AddBoost(increase);
+            onChange.Invoke(this);
+        }
+
+        public void UpgradeCooldown(float increase) {
+            cooldown.AddBoost(increase);
+            onChange.Invoke(this);
+        }
+
+        public void UpgradeArea(float increase) {
+            area.AddBoost(increase);
+            onChange.Invoke(this);
+        }
+
+        public void UpgradeDuration(float increase) {
+            duration.AddBoost(increase);
+            onChange.Invoke(this);
+        }
+
+        public void UpgradeAmount(int increase) {
+            projectileCount.AddBoost(increase);
             onChange.Invoke(this);
         }
 
         public void ObserveChanges(UnityAction<WeaponStats> callback) {
             onChange.AddListener(callback);
+        }
+
+        public void StopObserving(UnityAction<WeaponStats> callback) {
+            onChange.RemoveListener(callback);
         }
 
         public void RemoveAllObservers() {
