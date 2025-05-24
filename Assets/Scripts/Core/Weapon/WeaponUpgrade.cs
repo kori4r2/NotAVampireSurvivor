@@ -25,7 +25,7 @@ namespace NotAVampireSurvivor.Core {
                     stats.UpgradeDuration(increase);
                     return;
                 default:
-                    throw new NotImplementedException("");
+                    throw new ArgumentOutOfRangeException();
             }
         }
 
@@ -35,7 +35,7 @@ namespace NotAVampireSurvivor.Core {
             WeaponStatsEnum.Cooldown => $"Not implemented yet",
             WeaponStatsEnum.Damage => $"Not implemented yet",
             WeaponStatsEnum.Duration => $"Not implemented yet",
-            _ => throw new NotImplementedException(""),
+            _ => throw new ArgumentOutOfRangeException(),
         };
     }
 }

@@ -5,7 +5,8 @@ namespace NotAVampireSurvivor.Core {
     [Serializable]
     public class BaseArea : WeaponFloatStat {
         private const float maxBaseArea = 100;
-        protected override float ClampValue(float total) {
+
+        public override float ClampValue(float total) {
             return Mathf.Clamp(total, 0, maxBaseArea);
         }
     }

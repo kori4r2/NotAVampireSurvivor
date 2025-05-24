@@ -15,4 +15,15 @@ MonoBehaviour:
   itemName: 
   description: 
   sprite: {fileID: 0}
+  stats:
+    baseDamage:
+      value: 6
+    cooldown:
+      value: 0.1
+    duration:
+      value: 1.59
+    area:
+      value: 0
+    projectileCount:
+      value: 1
   levelUps: []
