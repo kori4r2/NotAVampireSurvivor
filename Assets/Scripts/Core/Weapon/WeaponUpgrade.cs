@@ -29,13 +29,13 @@ namespace NotAVampireSurvivor.Core {
             }
         }
 
-        public readonly string Description => statIndex switch {
-            WeaponStatsEnum.Amount => $"Not implemented yet",
-            WeaponStatsEnum.Area => $"Not implemented yet",
-            WeaponStatsEnum.Cooldown => $"Not implemented yet",
-            WeaponStatsEnum.Damage => $"Not implemented yet",
-            WeaponStatsEnum.Duration => $"Not implemented yet",
-            _ => throw new ArgumentOutOfRangeException(),
-        };
+        // public readonly string Description => statIndex switch {
+        //     WeaponStatsEnum.Amount => $"Not implemented yet",
+        //     WeaponStatsEnum.Area => $"Not implemented yet",
+        //     WeaponStatsEnum.Cooldown => $"Not implemented yet",
+        //     WeaponStatsEnum.Damage => $"Not implemented yet",
+        //     WeaponStatsEnum.Duration => $"Not implemented yet",
+        //     _ => throw new ArgumentOutOfRangeException(),
+        // };
     }
 }
