@@ -19,18 +19,20 @@ namespace NotAVampireSurvivor.Gameplay {
 
         private void Start() {
             Array.Sort(runSettings.Stage.Waves, (a, b) => a.SpawnTime.CompareTo(b.SpawnTime));
-            foreach (Wave wave in runSettings.Stage.Waves)
+            foreach (Wave wave in runSettings.Stage.Waves) {
                 pendingWaves.Enqueue(wave);
+            }
             SpawnTimeWaves(gameTime.Value);
             timerObserver = new VariableObserver<float>(gameTime, SpawnTimeWaves);
             timerObserver.StartWatching();
         }
 
         private void SpawnTimeWaves(float time) {
-            if (time < pendingWaves.Peek().SpawnTime)
-                return;
-            while (pendingWaves.Peek().SpawnTime >= time)
+            if (time < pendingWaves.Peek().SpawnTime) return;
+
+            while (pendingWaves.Peek().SpawnTime >= time) {
                 SpawnWave(pendingWaves.Dequeue());
+            }
         }
 
         private void SpawnWave(Wave wave) {
@@ -50,10 +52,11 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void Update() {
-            if (isPaused.Value || updaters.Count < 1)
-                return;
-            foreach (EnemyWaveUpdater updater in updaters)
+            if (isPaused.Value || updaters.Count < 1) return;
+
+            foreach (EnemyWaveUpdater updater in updaters) {
                 updater.Update(Time.deltaTime);
+            }
             foreach (EnemyWaveUpdater updater in deletedUpdaters) {
                 updaters.Remove(updater);
                 recyclingUpdaters.Enqueue(updater);

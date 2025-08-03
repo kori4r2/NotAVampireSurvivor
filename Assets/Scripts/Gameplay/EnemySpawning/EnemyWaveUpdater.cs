@@ -28,6 +28,7 @@ namespace NotAVampireSurvivor.Gameplay {
                 StageEnemy newEnemy = enemyPool.InstantiateObject(parent);
                 newEnemy.LoadRuntimeSet(runtimeSet);
                 newEnemy.LoadEnemyInfo(enemyGroup.Enemy);
+                // Position newly spawned enemies according to wave/enemy spawn logic
             }
         }
 
@@ -41,19 +42,18 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         public void Update(float deltaTime) {
-            if (clear)
-                return;
+            if (clear) return;
+
             UpdateEnemies(deltaTime);
         }
 
         private void UpdateEnemies(float deltaTime) {
             foreach (StageEnemy enemy in runtimeSet.ToArray()) {
-                if (!enemy || !enemy.ShouldUpdate)
-                    continue;
+                if (!enemy || !enemy.ShouldUpdate) continue;
+
                 enemy.ManagedUpdate(deltaTime);
             }
-            if (runtimeSet.Count <= 0)
-                ClearWave();
+            if (runtimeSet.Count <= 0) ClearWave();
         }
     }
 }

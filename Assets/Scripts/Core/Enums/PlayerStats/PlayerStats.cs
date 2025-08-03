@@ -28,7 +28,7 @@ namespace NotAVampireSurvivor.Core {
         private List<PlayerStat> stats = new List<PlayerStat>();
 
         private void OnEnable() {
-            stats = new List<PlayerStat>{
+            stats = new List<PlayerStat> {
                 armor,
                 maxHealth,
                 projectileCount,
@@ -38,7 +38,7 @@ namespace NotAVampireSurvivor.Core {
                 healthRegen,
                 might,
                 projectileSpeed,
-                speed
+                speed,
             };
         }
 

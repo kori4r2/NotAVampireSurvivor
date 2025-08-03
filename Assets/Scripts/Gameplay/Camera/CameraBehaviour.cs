@@ -21,8 +21,8 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void MoveTowardsPlayer() {
-            if (playerReference.Value == null)
-                return;
+            if (playerReference.Value is null) return;
+
             Vector3 playerPosition = playerReference.Value.transform.position;
             transform.position = new Vector3(playerPosition.x, playerPosition.y, transform.position.z);
         }

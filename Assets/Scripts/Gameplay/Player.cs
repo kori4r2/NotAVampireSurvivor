@@ -17,7 +17,7 @@ namespace NotAVampireSurvivor.Gameplay {
         [SerializeField] private Movable2D movable;
         [Header("Debug")]
         [SerializeField] private UnityEvent onAwake;
-        private Vector2 direction;
+        public Vector2 Direction { get; private set; } = Vector2.right;
         private static readonly float COS_45 = Mathf.Cos(Mathf.PI / 4);
         private static readonly float COS_22_5 = Mathf.Cos(Mathf.PI / 8);
 
@@ -39,24 +39,19 @@ namespace NotAVampireSurvivor.Gameplay {
         private void ProcessMovementInput(InputAction.CallbackContext context) {
             Vector2 input = context.ReadValue<Vector2>();
             movable.SetVelocity(input * speed.Value);
-            if (input == Vector2.zero)
-                return;
-            direction = ApplyAxisRestriction(input);
+            if (input == Vector2.zero || isGamePaused.Value) return;
+
+            Direction = ApplyAxisRestriction(input);
         }
 
-        private Vector2 ApplyAxisRestriction(Vector2 input) {
-            if (input.x > COS_22_5)
-                return Vector2.right;
-            if (input.y > COS_22_5)
-                return Vector2.up;
-            if (input.x < -COS_22_5)
-                return Vector2.left;
-            if (input.y < -COS_22_5)
-                return Vector2.down;
-            return new Vector2(
-                input.x > 0 ? COS_45 : -COS_45,
-                input.y > 0 ? COS_45 : -COS_45
-            );
+        private static Vector2 ApplyAxisRestriction(Vector2 input) {
+            if (input.x > COS_22_5) return Vector2.right;
+            if (input.y > COS_22_5) return Vector2.up;
+            if (input.x < -COS_22_5) return Vector2.left;
+            if (input.y < -COS_22_5) return Vector2.down;
+
+            return new Vector2(input.x > 0 ? COS_45 : -COS_45,
+                               input.y > 0 ? COS_45 : -COS_45);
         }
 
         private void OnPauseChange(bool isPaused) {
@@ -68,16 +63,15 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void OnDestroy() {
-            if (reference.Value == this)
-                reference.Value = null;
+            if (reference.Value == this) reference.Value = null;
             pauseObserver.StopWatching();
             movementAction.action.performed -= ProcessMovementInput;
             movementAction.action.canceled -= ProcessMovementInput;
         }
 
         private void Update() {
-            if (isGamePaused.Value)
-                return;
+            if (isGamePaused.Value) return;
+
             walkAnimator.SetVelocity(movable.CurrentVelocity);
             walkAnimator.Update(Time.deltaTime);
         }

@@ -25,7 +25,7 @@ namespace NotAVampireSurvivor.Editor {
                     EditorGUI.IntField(position, increase.displayName, Mathf.RoundToInt(increase.floatValue)),
                 WeaponStatsEnum.Area or WeaponStatsEnum.Cooldown or WeaponStatsEnum.Duration =>
                     EditorGUI.FloatField(position, increase.displayName, increase.floatValue),
-                _ => 0
+                _ => 0,
             };
             EditorGUI.EndProperty();
         }
