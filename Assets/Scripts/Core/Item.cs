@@ -9,5 +9,9 @@ namespace NotAVampireSurvivor.Core {
         [SerializeField] protected Sprite sprite;
         public Sprite Sprite => sprite;
         public int Level { get; set; } = 0;
+
+        public virtual void Reset() {
+            Level = 0;
+        }
     }
 }

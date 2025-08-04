@@ -37,7 +37,7 @@ MonoBehaviour:
   description: Higher Move Speed, but lower Max Health.
   permanentBoosts:
   - stat: {fileID: 11400000, guid: c8e6f022a4b608490bb4256863214f7a, type: 2}
-    increase: 0.2
+    increase: 0.75
   - stat: {fileID: 11400000, guid: 74199cc399d5422de99737b791f68f51, type: 2}
     increase: -30
   growthPeriod: 0

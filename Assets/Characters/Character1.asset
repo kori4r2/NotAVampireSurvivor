@@ -39,7 +39,7 @@ MonoBehaviour:
   - stat: {fileID: 11400000, guid: d78002ac0bf24dd7297cc364a34c4a87, type: 2}
     increase: 0.3
   - stat: {fileID: 11400000, guid: c8e6f022a4b608490bb4256863214f7a, type: 2}
-    increase: -0.15
+    increase: -0.25
   growthPeriod: 0
   growthLimit: 0
   growthBoost: []
