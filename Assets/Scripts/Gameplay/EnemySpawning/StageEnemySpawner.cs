@@ -8,13 +8,14 @@ namespace NotAVampireSurvivor.Gameplay {
     public class StageEnemySpawner : MonoBehaviour {
         [SerializeField] private EnemyPool enemyPool;
         [SerializeField] private RuntimeSet<StageEnemy> enemiesSet;
+        [SerializeField] private CameraLimits cameraLimits;
         [SerializeField] private RunSettings runSettings;
         [SerializeField] private FloatVariable gameTime;
         [SerializeField] private BoolVariable isPaused;
-        private List<EnemyWaveUpdater> updaters = new List<EnemyWaveUpdater>();
-        private List<EnemyWaveUpdater> deletedUpdaters = new List<EnemyWaveUpdater>();
-        private Queue<EnemyWaveUpdater> recyclingUpdaters = new Queue<EnemyWaveUpdater>();
-        private Queue<Wave> pendingWaves = new Queue<Wave>();
+        private readonly List<EnemyWaveUpdater> updaters = new();
+        private readonly HashSet<EnemyWaveUpdater> deletedUpdaters = new();
+        private readonly Queue<EnemyWaveUpdater> recyclingUpdaters = new();
+        private readonly Queue<Wave> pendingWaves = new();
         private VariableObserver<float> timerObserver;
 
         private void Start() {
@@ -28,9 +29,9 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void SpawnTimeWaves(float time) {
-            if (time < pendingWaves.Peek().SpawnTime) return;
+            if (pendingWaves.Count < 1 || time < pendingWaves.Peek().SpawnTime) return;
 
-            while (pendingWaves.Peek().SpawnTime >= time) {
+            while (pendingWaves.Count > 0 && time >= pendingWaves.Peek().SpawnTime) {
                 SpawnWave(pendingWaves.Dequeue());
             }
         }
@@ -55,6 +56,8 @@ namespace NotAVampireSurvivor.Gameplay {
             if (isPaused.Value || updaters.Count < 1) return;
 
             foreach (EnemyWaveUpdater updater in updaters) {
+                if (deletedUpdaters.Contains(updater)) continue;
+
                 updater.Update(Time.deltaTime);
             }
             foreach (EnemyWaveUpdater updater in deletedUpdaters) {

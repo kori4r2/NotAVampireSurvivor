@@ -3,6 +3,7 @@ using Toblerone.Toolbox;
 using UnityEngine;
 
 namespace NotAVampireSurvivor.Gameplay {
+    [CreateAssetMenu(menuName = "VampSurvivor/Enemy Set")]
     public class EnemySet : RuntimeSet<StageEnemy> {
         private readonly List<StageEnemy> enemiesByDistance = new();
 

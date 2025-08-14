@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0bd25339f749315b8ec43c540b36aee, type: 3}
-  m_Name: Camera Limits
+  m_Script: {fileID: 11500000, guid: 02655b99237b6c6efa1be0bebcae8316, type: 3}
+  m_Name: Wanderers
   m_EditorClassIdentifier: 
-  marginSize: 2
+  enemy: {fileID: 11400000, guid: 0160728c107ff00d897df890c0eab8c2, type: 2}
+  count: 10

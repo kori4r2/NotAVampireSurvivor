@@ -5,10 +5,12 @@ using UnityEngine.Events;
 
 namespace NotAVampireSurvivor.Gameplay {
     public class EnemyWaveUpdater {
-        private IRuntimeSet<StageEnemy> runtimeSet = null;
-        private EnemyPool enemyPool = null;
-        private UnityEvent<EnemyWaveUpdater> onClear = new UnityEvent<EnemyWaveUpdater>();
+        private readonly IRuntimeSet<StageEnemy> runtimeSet = null;
+        private readonly EnemyPool enemyPool = null;
+        private readonly UnityEvent<EnemyWaveUpdater> onClear = new UnityEvent<EnemyWaveUpdater>();
         private bool clear = false;
+        public bool Clear => clear;
+        private float waveExp;
 
         public EnemyWaveUpdater(EnemyPool pool, Wave wave, Transform parent) {
             runtimeSet = new EnemyWaveRuntimeSet();
@@ -18,17 +20,26 @@ namespace NotAVampireSurvivor.Gameplay {
 
         public void LoadWaveEnemies(Wave wave, Transform parent) {
             clear = false;
+            waveExp = CalculateExp(wave);
             foreach (EnemyGroup enemyGroup in wave.EnemyGroups) {
                 LoadEnemyGroup(enemyGroup, parent);
             }
         }
 
+        private static float CalculateExp(Wave wave) {
+            // TO DO
+            return 0;
+        }
+
         private void LoadEnemyGroup(EnemyGroup enemyGroup, Transform parent) {
+            // TO DO: Implement different initial positioning
+            // TO DO: Allow for delayed spawning instead of doing it all at once
+            float randomAngle = Random.value * 360;
             for (int count = 0; count < enemyGroup.Count; count++) {
                 StageEnemy newEnemy = enemyPool.InstantiateObject(parent);
                 newEnemy.LoadRuntimeSet(runtimeSet);
                 newEnemy.LoadEnemyInfo(enemyGroup.Enemy);
-                // Position newly spawned enemies according to wave/enemy spawn logic
+                newEnemy.PositionOnMargin(randomAngle + count * (360f / enemyGroup.Count));
             }
         }
 
@@ -37,8 +48,8 @@ namespace NotAVampireSurvivor.Gameplay {
         }
 
         private void ClearWave() {
-            onClear.Invoke(this);
             clear = true;
+            onClear.Invoke(this);
         }
 
         public void Update(float deltaTime) {

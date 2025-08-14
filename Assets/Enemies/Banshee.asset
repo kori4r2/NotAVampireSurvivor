@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ae91ea55e65c629f95e074b30382a14, type: 3}
+  m_Name: Banshee
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -1062641472245613352, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+  animation:
+    duration: 1.5
+    sprites:
+    - {fileID: -1062641472245613352, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -4195351317375408228, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 3944182504432562672, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -5697042111159262079, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 8143118683352032597, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 5239640565373365461, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -1817671790534516194, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 2847783839894055674, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 3376667201156638198, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -4039162745183004181, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 539960681746159716, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 8879136489584731328, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 2815899952590879731, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -9165647805469199281, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 8707716025094225278, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 8842360903213259585, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -74029585346205069, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 3623720382331796471, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 7633213814252049601, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: -5050563528936813750, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+    - {fileID: 4395311736964243817, guid: 8e53b1104bc64e4c9beeb0c258d355b3, type: 3}
+  moveSpeed: 2
+  maxHp: 10

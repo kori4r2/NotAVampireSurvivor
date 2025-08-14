@@ -15,5 +15,14 @@ MonoBehaviour:
   levelName: Stage A
   levelDescription: First stage.
   preview: {fileID: 0}
-  waves: []
+  waves:
+  - enemyGroups:
+    - {fileID: 11400000, guid: facbd56957af40f14aaf106d7a98ef86, type: 2}
+    spawnTime: 5
+  - enemyGroups:
+    - {fileID: 11400000, guid: c608b638d67b64f41a1f56f5ac6f8cf2, type: 2}
+    spawnTime: 20
+  - enemyGroups:
+    - {fileID: 11400000, guid: 4b345d901b78d2808bbf744c590a6216, type: 2}
+    spawnTime: 50
   stagePrefab: {fileID: 6876319930047904405, guid: 747d4e9253b9d0de89ebb46403e43aef, type: 3}

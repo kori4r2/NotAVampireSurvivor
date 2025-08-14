@@ -11,6 +11,7 @@ namespace NotAVampireSurvivor.Gameplay {
         private EventListener rectChangeListener;
 
         private void Start() {
+            cameraLimits.UpdateRectSize(mainCamera);
             rectChangeListener = new EventListener(onRectChange, () => cameraLimits.UpdateRectSize(mainCamera));
             rectChangeListener.StartListeningEvent();
         }
